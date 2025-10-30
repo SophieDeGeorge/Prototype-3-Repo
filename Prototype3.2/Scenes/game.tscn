@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://csb5jcf0ar8ua"]
+
+[ext_resource type="PackedScene" uid="uid://ci6ylgimmhor7" path="res://Prototype3.2/Scenes/player.tscn" id="1_f8muu"]
+[ext_resource type="Script" uid="uid://43a05m5gdr0k" path="res://Prototype3.2/Scenes/game.gd" id="1_pnvsx"]
+[ext_resource type="PackedScene" uid="uid://r63ipnafryvq" path="res://Prototype3.2/Scenes/stick.tscn" id="2_pnvsx"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_pnvsx")
+
+[node name="Player" parent="." groups=["Player", "player"] instance=ExtResource("1_f8muu")]
+z_index = 999
+motion_mode = 1
+
+[node name="Stick" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(374, -113)
+
+[node name="Stick2" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-1074, -1717)
+
+[node name="Stick3" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(1760, -2013)
+
+[node name="Stick4" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(2236, -362)
+
+[node name="Stick5" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(2712, 1289)
+
+[node name="Stick6" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(842, 2089)
+
+[node name="Stick7" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-1161, 787)
+
+[node name="Stick8" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-1640, 1950)
+
+[node name="Stick9" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-2222, -395)
+
+[node name="Stick10" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(1323, 667)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -11.5
+offset_right = 338.5
+offset_bottom = 80.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER!"
