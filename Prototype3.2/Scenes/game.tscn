@@ -1,0 +1,191 @@
+[gd_scene load_steps=8 format=3 uid="uid://csb5jcf0ar8ua"]
+
+[ext_resource type="PackedScene" uid="uid://ci6ylgimmhor7" path="res://Prototype3.2/Scenes/player.tscn" id="1_f8muu"]
+[ext_resource type="Script" uid="uid://43a05m5gdr0k" path="res://Prototype3.2/Scripts/game.gd" id="1_pnvsx"]
+[ext_resource type="PackedScene" uid="uid://r63ipnafryvq" path="res://Prototype3.2/Scenes/stick.tscn" id="2_pnvsx"]
+[ext_resource type="Texture2D" uid="uid://cdwini3q4unpi" path="res://Prototype3.2/Assets/Maze.PNG" id="4_5gmhy"]
+[ext_resource type="Shader" uid="uid://dqvkfd53u1xi1" path="res://Prototype3.2/Scripts/player.gdshader" id="5_ty1hf"]
+[ext_resource type="PackedScene" uid="uid://dgt48wbdhpvvh" path="res://Prototype3.2/Scenes/enemy.tscn" id="6_08rmc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_08rmc"]
+shader = ExtResource("5_ty1hf")
+shader_parameter/light_uv = Vector2(0, 0)
+shader_parameter/radius_px = 220.0
+shader_parameter/feather_px = 140.0
+shader_parameter/darkness = 1.0
+shader_parameter/viewport_size = Vector2(1920, 1080)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_pnvsx")
+enemy_scene = ExtResource("6_08rmc")
+
+[node name="Maze" type="Sprite2D" parent="."]
+z_index = -10
+scale = Vector2(15, 15)
+texture = ExtResource("4_5gmhy")
+
+[node name="Area2D" type="StaticBody2D" parent="Maze"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Maze/Area2D"]
+polygon = PackedVector2Array(-354.06668, -189.26668, -321.86667, -188.53334, -320.00003, -326.00003, -61.26667, -326.40002, -60.533337, -105.13334, -27.133335, -105.466675, -24.933334, -328.2667, 14.333334, -328.6, 5.8, -60.600002, -91.26667, -60.600002, -97.200005, -279.6667, -277, -281.53336, -281.06668, -21.333334, -166.86667, -23.2, -169.13335, -63.600002, -245.46667, -64.333336, -243.6, -243.73335, -126.466675, -240.40001, -125.40001, -141.06668, -165.8, -141.40001, -168.00002, -190.73334, -209.13335, -191.46667, -207.33334, -105.86667, -124.26667, -102.53334, -127.26667, -27.266668, -87.933334, -23.533335, -92.73334, 107.26667, -161.00002, 107.66667, -164.33334, 203.26668, -199.86668, 203.26668, -198.8, 243.33334, -241.00002, 242.93335, -239.53334, 149.20001, -201.40001, 151.40001, -200.6, 109.86667, -276.6, 107.66667, -274.73334, 278.86667, -165.40001, 279.2667, -163.20001, 241.46667, -127.26667, 240.73335, -125.00001, 148.06668, -59.4, 146.93333, -55.333336, -23.933334, 42.86667, -23.533335, 51.4, -106.600006, 160.00002, -105.466675, 159.66667, -145.86667, 48.46667, -144.8, 52.533337, -326.73334, 159.66667, -325.6667, 160.00002, -288.93335, 194.86668, -288.6, 194.46667, -325.6667, 318.2667, -325.2667, 318.2667, -177.40001, 237.13335, -177.00002, 236.40001, -214.80002, 280.13336, -214.80002, 279, -285.2667, 238.6, -285.2667, 234.13335, -245.6, 116.26667, -243.73335, 117.00001, -286, 84.8, -285.2667, 84.8, -193.66667, 193.40001, -195.53334, 197.46667, -66.200005, 85.13334, -62.133335, 84.06667, -26.866669, 191.13335, -24.666668, 193.40001, 16.066668, 282.33334, 16.866667, 278.2667, -28.000002, 236.73335, -29.866669, 235.26668, -144.8, 322.73334, -143.66667, 322.73334, -99.93334, 280.86667, -99.93334, 281.2, -68.4, 320.13336, -67.66667, 322.40002, 65.4, 159.26668, 65, 157.8, 21.666668, 123.66667, 21.266668, 122.200005, 97.66667, 47.333336, 103.200005, 52.533337, 192.13335, 86.26667, 192.93335, 85.86667, 143.6, 123.33334, 142.86667, 124.8, 241.46667, 9.133334, 244.40001, 5.8, 61.66667, 84.4, 60.93334, 86.600006, 23.866669, -25.333334, 21.266668, -22.000002, 286.6667, 280.13336, 284.46667, 278.2667, 240.00002, 157.8, 241.80002, 156.66667, 100.26667, 357.93335, 103.200005, 353.53336, -356.40002, -355.93335, -356.40002)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Maze"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Maze/StaticBody2D"]
+polygon = PackedVector2Array(-356.2, -148.46667, -323.00003, -145.86667, -324.73334, 21.066668, -130.73334, 19.333334, -128.06668, 54.26667, -323.86667, 61.26667, -324.73334, 326.06668, -126.33334, 325.2, -125.466675, 282.40002, -97.466675, 278.86667, -89.600006, 198.46667, -59.93334, 200.20001, -57.26667, 320.00003, 322.86667, 322.6, 323.80002, 188.00002, 194.40001, 193.26668, 194.40001, 149.53334, 356.13336, 149.53334, 354.33334, 86.600006, 437.40002, 88.333336, 435.6667, 424.8667, -440.13336, 426.60004, -427.8667, -220.13335, -350.93335, -207.06668)
+
+[node name="Player" parent="." groups=["Player", "player"] instance=ExtResource("1_f8muu")]
+z_index = 999
+motion_mode = 1
+
+[node name="Stick" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(1674, 1409)
+
+[node name="Stick2" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-2748, 1856)
+
+[node name="Stick3" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(1551, -4393)
+
+[node name="Stick4" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(4645, 1939)
+
+[node name="Stick5" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-5019, -2482)
+
+[node name="Stick6" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-1049, -4727)
+
+[node name="Stick11" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-3552, -2570)
+
+[node name="Stick12" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-4416, 175)
+
+[node name="Stick13" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-4761, 2939)
+
+[node name="Stick14" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-2400, 4263)
+
+[node name="Stick15" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(816, 3023)
+
+[node name="Stick16" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(2417, 2792)
+
+[node name="Stick17" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(3282, 355)
+
+[node name="Stick18" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(4090, -1087)
+
+[node name="Stick7" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(2343, 4827)
+
+[node name="Stick8" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-1754, 2324)
+
+[node name="Stick9" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(-2222, -395)
+
+[node name="Stick10" parent="." instance=ExtResource("2_pnvsx")]
+position = Vector2(2813, -1093)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -124.0
+offset_right = 245.00012
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 66
+text = "GAME OVER!"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="YouWinLabel" type="Label" parent="CanvasLayer2"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -124.0
+offset_right = 236.00037
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 66
+text = "YOU WIN!"
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+
+[node name="ObjectiveLabel" type="Label" parent="CanvasLayer3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -556.0
+offset_top = -274.0
+offset_right = -26.0
+offset_bottom = -169.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 31
+text = "Locate the spy"
+
+[node name="DarknessLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="DarknessRect" type="ColorRect" parent="DarknessLayer"]
+material = SubResource("ShaderMaterial_08rmc")
+mouse_filter = 2
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.072842635, 0.072842635, 0.072842635, 1)
+energy = 1.66
+blend_mode = 2
+
+[node name="SP1" type="Node2D" parent="."]
+position = Vector2(421, 2873)
+
+[node name="SP2" type="Node2D" parent="."]
+position = Vector2(-2122, 4615)
+
+[node name="SP3" type="Node2D" parent="."]
+position = Vector2(-3764, 1238)
+
+[node name="SP4" type="Node2D" parent="."]
+position = Vector2(4491, 3297)
+
+[node name="SP5" type="Node2D" parent="."]
+position = Vector2(4467, -302)
+
+[node name="SP6" type="Node2D" parent="."]
+position = Vector2(2497, -3927)
+
+[node name="SP7" type="Node2D" parent="."]
+position = Vector2(1995, -2469)
+
+[node name="SP8" type="Node2D" parent="."]
+position = Vector2(-625, -1248)
+
+[node name="SP9" type="Node2D" parent="."]
+position = Vector2(-3393, -1652)
+
+[node name="SP10" type="Node2D" parent="."]
+position = Vector2(-4476, -4508)
+
+[node name="SP11" type="Node2D" parent="."]
+position = Vector2(-4525, -1011)
