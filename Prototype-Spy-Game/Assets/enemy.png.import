@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cei78lwdk6gjn"
-path="res://.godot/imported/light.webp-416065668ccc561a32ff9183a54ebd4f.ctex"
+uid="uid://bmymynlkrgnjt"
+path="res://.godot/imported/enemy.png-047abaaa45204cc0c6ed4394524e3a98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Prototype3.2/Assets/light.webp"
-dest_files=["res://.godot/imported/light.webp-416065668ccc561a32ff9183a54ebd4f.ctex"]
+source_file="res://Assets/enemy.png"
+dest_files=["res://.godot/imported/enemy.png-047abaaa45204cc0c6ed4394524e3a98.ctex"]
 
 [params]
 

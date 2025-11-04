@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://csb5jcf0ar8ua"]
 
-[ext_resource type="PackedScene" uid="uid://ci6ylgimmhor7" path="res://Prototype3.2/Scenes/player.tscn" id="1_f8muu"]
-[ext_resource type="Script" uid="uid://43a05m5gdr0k" path="res://Prototype3.2/Scripts/game.gd" id="1_pnvsx"]
-[ext_resource type="PackedScene" uid="uid://r63ipnafryvq" path="res://Prototype3.2/Scenes/stick.tscn" id="2_pnvsx"]
-[ext_resource type="Texture2D" uid="uid://cdwini3q4unpi" path="res://Prototype3.2/Assets/Maze.PNG" id="4_5gmhy"]
-[ext_resource type="Shader" uid="uid://dqvkfd53u1xi1" path="res://Prototype3.2/Scripts/player.gdshader" id="5_ty1hf"]
-[ext_resource type="PackedScene" uid="uid://dgt48wbdhpvvh" path="res://Prototype3.2/Scenes/enemy.tscn" id="6_08rmc"]
+[ext_resource type="PackedScene" uid="uid://ci6ylgimmhor7" path="res://Scenes/player.tscn" id="1_f8muu"]
+[ext_resource type="Script" uid="uid://43a05m5gdr0k" path="res://Scripts/game.gd" id="1_pnvsx"]
+[ext_resource type="PackedScene" uid="uid://r63ipnafryvq" path="res://Scenes/stick.tscn" id="2_pnvsx"]
+[ext_resource type="Texture2D" uid="uid://cdwini3q4unpi" path="res://Assets/Maze.PNG" id="4_5gmhy"]
+[ext_resource type="Shader" uid="uid://dqvkfd53u1xi1" path="res://Scripts/player.gdshader" id="5_ty1hf"]
+[ext_resource type="PackedScene" uid="uid://dgt48wbdhpvvh" path="res://Scenes/enemy.tscn" id="6_08rmc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_08rmc"]
 shader = ExtResource("5_ty1hf")

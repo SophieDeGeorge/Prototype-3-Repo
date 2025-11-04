@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmgeog6bu8moi"
-path="res://.godot/imported/stick_snap.png-ebac5fca6fd02d64e9fd4750bb9fc652.ctex"
+uid="uid://d2lp0p24po02d"
+path="res://.godot/imported/stick.png-02ee76aa4064544b5fc3564a0895d3c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Prototype3.2/Assets/stick_snap.png"
-dest_files=["res://.godot/imported/stick_snap.png-ebac5fca6fd02d64e9fd4750bb9fc652.ctex"]
+source_file="res://Assets/stick.png"
+dest_files=["res://.godot/imported/stick.png-02ee76aa4064544b5fc3564a0895d3c0.ctex"]
 
 [params]
 
