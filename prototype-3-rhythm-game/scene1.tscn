@@ -1,3 +1,61 @@
-[gd_scene format=3 uid="uid://bnyrxkilgahde"]
+[gd_scene load_steps=7 format=3 uid="uid://bnyrxkilgahde"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://dm2urabferfn2" path="res://Frames/Hands/snappingBefore.png" id="1_ho7oe"]
+[ext_resource type="Texture2D" uid="uid://dhac4mpabf7fj" path="res://Frames/Hands/snappingAfter.png" id="2_nmhtg"]
+[ext_resource type="Texture2D" uid="uid://b04cb6fvhrf7k" path="res://Assets/bubble.png" id="3_tq727"]
+[ext_resource type="Texture2D" uid="uid://ip8hxcrx2bti" path="res://Assets/bubbleOutline.png" id="4_b6skf"]
+[ext_resource type="Script" uid="uid://byg44gi7u4hlu" path="res://Scripts/snap.gd" id="4_nmhtg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nmhtg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ho7oe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nmhtg")
+}],
+"loop": false,
+"name": &"snap",
+"speed": 5.0
+}]
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HandRight" type="Sprite2D" parent="."]
+position = Vector2(90, 260)
+rotation = -3.1415927
+scale = Vector2(0.3, -0.3)
+script = ExtResource("4_nmhtg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HandRight"]
+sprite_frames = SubResource("SpriteFrames_nmhtg")
+animation = &"snap"
+
+[node name="HandLeft" type="Sprite2D" parent="."]
+position = Vector2(-90, 260)
+scale = Vector2(0.3, 0.3)
+script = ExtResource("4_nmhtg")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Bubble" type="Sprite2D" parent="."]
+position = Vector2(-90, -120)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_tq727")
+
+[node name="BubbleOutline" type="Sprite2D" parent="Bubble"]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_b6skf")
+
+[node name="Bubble2" type="Sprite2D" parent="."]
+position = Vector2(90, -120)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_tq727")
+
+[node name="BubbleOutline2" type="Sprite2D" parent="."]
+position = Vector2(90, -120)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_b6skf")
