@@ -10,36 +10,39 @@ public class Snap : MonoBehaviour
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private float timeBetweenFrames;
 
-    private static Sprite beforeSprite;
-    private static Sprite afterSprite;
+    [SerializeField] private Sprite beforeSprite;
+    [SerializeField] private Sprite afterSprite;
 
     void Start()
     {
-        m_SpriteRenderer = GetComponent<SpriteRenderer>();
-        beforeSprite = Resources.Load<Sprite>("Textures/snappingBefore");
-        afterSprite = Resources.Load<Sprite>("Textures/snappingAfter");
+        //m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        //beforeSprite = Resources.Load<Sprite>("Textures/snappingBefore");
+        //afterSprite = Resources.Load<Sprite>("Textures/snappingAfter");
     }
 
-    public static void OnLeft()
+    public void OnLeft()
     {
+        Debug.Log("Left func");
         //play animation
-        //StartCoroutine(doAnimation(timeBetweenFrames));
+        StartCoroutine(DoAnimation(timeBetweenFrames));
         //handle bubble
     }
 
-    public static void OnRight()
+    public void OnRight()
     {
+        Debug.Log("Left func");
         //play animation
-
-
+        StartCoroutine(DoAnimation(timeBetweenFrames));
         //handle bubble
     }
     
-    IEnumerator doAnimation(float waitTime)
+    IEnumerator DoAnimation(float waitTime)
     {
+        Debug.Log("inside corountine");
         m_SpriteRenderer.sprite = afterSprite;
         yield return new WaitForSeconds(waitTime);
         m_SpriteRenderer.sprite = beforeSprite;
+        Debug.Log("after corountine");
     }
 
     
