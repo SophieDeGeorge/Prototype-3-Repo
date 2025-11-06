@@ -5,6 +5,7 @@ extends Node2D
 @export var one_time_trigger: bool = true
 @export var min_pitch: float = 0.9
 @export var max_pitch: float = 1.1
+@export var reset_delay: float = 5.0
 
 var _activated: bool = false
 var _base_texture_size: Vector2
@@ -19,17 +20,40 @@ func _ready() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.name != "Player":
 		return
+
 	if one_time_trigger and _activated:
 		return
+
+	if _activated:
+		return
+	
 	_activated = true
+
 	var rand_pitch = randf_range(min_pitch, max_pitch)
 	$AudioStreamPlayer2D.pitch_scale = rand_pitch
 	$AudioStreamPlayer2D.play()
 	if activated_texture:
 		_set_sprite_texture_preserving_size(activated_texture)
-	var game_root := get_tree().current_scene
-	if game_root and game_root.has_method("game_over"):
-		game_root.game_over(body)
+		var stick_pos: Vector2 = global_position
+		for enemy in get_tree().get_nodes_in_group("Enemy"):
+			if enemy.has_method("alert_to_stick"):
+				enemy.alert_to_stick(stick_pos)
+	_start_reset_timer()
+
+func _start_reset_timer() -> void:
+	await get_tree().create_timer(reset_delay).timeout
+	_reset_stick()
+
+func _reset_stick() -> void:
+	# allow triggering again unless you truly want one-time only
+	_activated = false
+
+	var sprite := $Sprite2D
+	if default_texture:
+		_set_sprite_texture_preserving_size(default_texture)
+	else:
+		sprite.texture = null
+		sprite.scale = _base_scale
 
 func _store_base_sprite_size() -> void:
 	var sprite := $Sprite2D
@@ -41,8 +65,12 @@ func _store_base_sprite_size() -> void:
 
 func _set_sprite_texture_preserving_size(new_tex: Texture2D) -> void:
 	var sprite := $Sprite2D
+	if new_tex == null:
+		return
 	sprite.texture = new_tex
 	var new_size: Vector2 = new_tex.get_size()
+	if new_size.x == 0.0 or new_size.y == 0.0:
+		return
 	var target_visual_size: Vector2 = _base_texture_size * _base_scale
 	var new_scale: Vector2 = Vector2(
 		target_visual_size.x / new_size.x,

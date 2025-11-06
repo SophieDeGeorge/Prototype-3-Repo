@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://csb5jcf0ar8ua"]
+[gd_scene load_steps=9 format=3 uid="uid://csb5jcf0ar8ua"]
 
 [ext_resource type="PackedScene" uid="uid://ci6ylgimmhor7" path="res://Prototype3.2/Scenes/player.tscn" id="1_f8muu"]
 [ext_resource type="Script" uid="uid://43a05m5gdr0k" path="res://Prototype3.2/Scripts/game.gd" id="1_pnvsx"]
@@ -7,9 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cdwini3q4unpi" path="res://Prototype3.2/Assets/Maze.PNG" id="4_5gmhy"]
 [ext_resource type="Shader" uid="uid://dqvkfd53u1xi1" path="res://Prototype3.2/Scripts/player.gdshader" id="5_ty1hf"]
 [ext_resource type="PackedScene" uid="uid://dgt48wbdhpvvh" path="res://Prototype3.2/Scenes/dead_body.tscn" id="6_08rmc"]
-[ext_resource type="Script" uid="uid://vjyfcm6rcicq" path="res://Prototype3.2/Scenes/timer_label.gd" id="7_ph6mm"]
-[ext_resource type="AudioStream" uid="uid://dnh8gxweokfy0" path="res://Prototype3.2/Assets/ambience.mp3" id="9_av75u"]
-[ext_resource type="AudioStream" uid="uid://bbs7o0q1womht" path="res://Prototype3.2/Assets/lose_sfx.mp3" id="10_av75u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_08rmc"]
 shader = ExtResource("5_ty1hf")
@@ -45,6 +42,7 @@ position = Vector2(28, 19)
 motion_mode = 1
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+enabled = false
 color = Color(0.072842635, 0.072842635, 0.072842635, 1)
 energy = 1.66
 blend_mode = 2
@@ -68,9 +66,6 @@ position = Vector2(4467, -302)
 
 [node name="SP6" type="Node2D" parent="SpawnsFolder"]
 position = Vector2(2497, -3927)
-
-[node name="SP12" type="Node2D" parent="SpawnsFolder"]
-position = Vector2(3807, -2903)
 
 [node name="SP7" type="Node2D" parent="SpawnsFolder"]
 position = Vector2(1995, -2469)
@@ -140,30 +135,6 @@ position = Vector2(-1754, 2324)
 [node name="Stick9" parent="SticksFolder" instance=ExtResource("2_pnvsx")]
 position = Vector2(-2074, -449)
 
-[node name="Stick19" parent="SticksFolder" instance=ExtResource("2_pnvsx")]
-position = Vector2(-1488, 967)
-
-[node name="Stick20" parent="SticksFolder" instance=ExtResource("2_pnvsx")]
-position = Vector2(-2961, -1402)
-
-[node name="Stick21" parent="SticksFolder" instance=ExtResource("2_pnvsx")]
-position = Vector2(-3515, 1081)
-
-[node name="Stick23" parent="SticksFolder" instance=ExtResource("2_pnvsx")]
-position = Vector2(4749, 352)
-
-[node name="Stick24" parent="SticksFolder" instance=ExtResource("2_pnvsx")]
-position = Vector2(1991, -2770)
-
-[node name="Stick25" parent="SticksFolder" instance=ExtResource("2_pnvsx")]
-position = Vector2(3597, -4356)
-
-[node name="Stick26" parent="SticksFolder" instance=ExtResource("2_pnvsx")]
-position = Vector2(4345, 3858)
-
-[node name="Stick22" parent="SticksFolder" instance=ExtResource("2_pnvsx")]
-position = Vector2(-796, 4174)
-
 [node name="Stick10" parent="SticksFolder" instance=ExtResource("2_pnvsx")]
 position = Vector2(2813, -1093)
 
@@ -220,25 +191,7 @@ offset_bottom = -169.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 31
-text = "Locate the body"
-
-[node name="TimerUI" type="CanvasLayer" parent="UIFolder"]
-
-[node name="TimerLabel" type="Label" parent="UIFolder/TimerUI"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -556.0
-offset_top = -238.01999
-offset_right = -26.0
-offset_bottom = -133.01987
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 31
-text = "Locate the body"
-script = ExtResource("7_ph6mm")
+text = "Locate the spy"
 
 [node name="DarknessLayer" type="CanvasLayer" parent="UIFolder"]
 follow_viewport_enabled = true
@@ -246,14 +199,3 @@ follow_viewport_enabled = true
 [node name="DarknessRect" type="ColorRect" parent="UIFolder/DarknessLayer"]
 material = SubResource("ShaderMaterial_08rmc")
 mouse_filter = 2
-
-[node name="AmbienceMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_av75u")
-volume_db = -6.23
-autoplay = true
-max_distance = 1e+16
-
-[node name="LoseAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_av75u")
-volume_db = -0.51
-max_distance = 94540.0

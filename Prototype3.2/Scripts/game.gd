@@ -1,81 +1,50 @@
 extends Node2D
 
-var _is_game_over: bool = false
-
-func game_over(player: Node) -> void:
-	if _is_game_over:
-		return
-	_is_game_over = true
-	if player.has_method("freeze_player"):
-		player.freeze_player()
-	$CanvasLayer/GameOverLabel.visible = true
-	var tree := get_tree()
-	var current_scene := tree.current_scene
-	if current_scene:
-		tree.create_timer(3.0).timeout.connect(func():
-			tree.reload_current_scene())
-
-func you_win(player: Node) -> void:
-	if _is_game_over:
-		return
-	_is_game_over = true
-	if player.has_method("freeze_player"):
-		player.freeze_player()
-	$CanvasLayer2/YouWinLabel.visible = true
-	var tree := get_tree()
-	var current_scene := tree.current_scene
-	if current_scene:
-		tree.create_timer(3.0).timeout.connect(func():
-			tree.reload_current_scene())
-			
+@export var body_scene: PackedScene
 @export var enemy_scene: PackedScene
-@export var name_filter: String = "SP"        # matches any node with "SP" in its name
-@export var spawn_count: int = 1
-@export var remove_marker_after_spawn := true
-@export var debug_prints := false
+var rng := RandomNumberGenerator.new()
+var is_game_over: bool = false
 
-var _rng := RandomNumberGenerator.new()
+func game_end(player: Node, is_win: bool) -> void:
+	if is_game_over:
+		return
+	is_game_over = true
+
+	if player.has_method("freeze_player"):
+		player.freeze_player()
+
+	if is_win:
+		$UIFolder/YouWin/YouWinLabel.visible = true
+	else:
+		$UIFolder/GameOver/GameOverLabel.visible = true
+		$LoseAudio.stop()
+		$LoseAudio.play()
+
+	var tween := create_tween()
+	tween.tween_property($AmbienceMusic, "volume_db", -80.0, 1.0)
+	tween.tween_callback(Callable($AmbienceMusic, "stop"))
+
+	var tree := get_tree()
+	var current_scene := tree.current_scene
+	if current_scene:
+		tree.create_timer(3.0).timeout.connect(func():
+			tree.reload_current_scene())
+
 
 func _ready() -> void:
-	if enemy_scene == null:
-		push_warning("enemy_scene not set.")
-		return
-
-	_rng.randomize()
-
-	var points: Array[Node] = _collect_spawn_points(name_filter)
-	if points.is_empty():
-		push_warning("No spawn points with '%s' in the name were found." % name_filter)
-		return
-
-	var n: int = min(spawn_count, points.size())  # ✅ typed as int
-
-	# Pick without replacement using our RNG
-	for i in n:  # loops 0..n-1 in Godot 4
-		var k: int = _rng.randi_range(0, points.size() - 1)
-		var sp: Node = points[k]
-		points.remove_at(k)
-
-		var enemy: Node = enemy_scene.instantiate()
+	rng.randomize()
+	var points: Array[Node2D] = []
+	for child in $SpawnsFolder.get_children():
+		if child is Node2D and child.name.begins_with("SP"):
+			points.append(child)
+	points.shuffle()
+	var enemy_spawn_count: int = mini(points.size(), 5)
+	for i in range(enemy_spawn_count):
+		var sp_node: Node2D = points[i]
+		var enemy := enemy_scene.instantiate()
+		enemy.global_position = sp_node.global_position
 		add_child(enemy)
-
-		if enemy is Node2D and sp is Node2D:
-			(enemy as Node2D).global_position = (sp as Node2D).global_position
-
-		if debug_prints:
-			print("Spawned at: ", sp.get_path())
-
-		if remove_marker_after_spawn:
-			sp.queue_free()
-
-func _collect_spawn_points(filter_text: String) -> Array[Node]:
-	var want := filter_text.to_upper()
-	var found: Array[Node] = []
-	var stack: Array[Node] = [self]
-	while not stack.is_empty():
-		var n: Node = stack.pop_back()
-		for c in n.get_children():
-			stack.push_back(c)
-			if str(c.name).to_upper().find(want) != -1:
-				found.append(c)
-	return found
+	var body_sp: Node2D = points[enemy_spawn_count]
+	var body := body_scene.instantiate()
+	body.global_position = body_sp.global_position
+	add_child(body)
