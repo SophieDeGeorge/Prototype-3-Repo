@@ -15,6 +15,9 @@ var _direction: Vector2 = Vector2.ZERO
 var chasing_stick: bool = false
 var chasing_player: bool = false
 var target_pos: Vector2 = Vector2.ZERO
+var is_activated: bool = false
+
+@onready var sprite = $Sprite2D    # or $AnimatedSprite2D / $AnimatedSprite2D2D
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -39,6 +42,7 @@ func _physics_process(delta: float) -> void:
 		_move_wander()
 
 	move_and_slide()
+	_update_flip()
 
 func _update_player_chase() -> void:
 	if player and global_position.distance_to(player.global_position) <= player_detection_radius:
@@ -84,8 +88,6 @@ func alert_to_stick(stick_global_pos: Vector2) -> void:
 	target_pos = stick_global_pos
 	chasing_stick = true
 	chasing_player = false
-	
-var is_activated: bool = false
 
 func _on_body_entered(body: Node) -> void:
 	if body.name != "Player" or is_activated:
@@ -94,3 +96,12 @@ func _on_body_entered(body: Node) -> void:
 	var game_root := get_tree().current_scene
 	if game_root and game_root.has_method("game_end"):
 		game_root.game_end(body, false)
+
+func _update_flip() -> void:
+	if not sprite:
+		return
+
+	if velocity.x > 0.1:
+		sprite.flip_h = false
+	elif velocity.x < -0.1:
+		sprite.flip_h = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://csb5jcf0ar8ua"]
+[gd_scene load_steps=13 format=3 uid="uid://csb5jcf0ar8ua"]
 
 [ext_resource type="PackedScene" uid="uid://ci6ylgimmhor7" path="res://Prototype3.2/Scenes/player.tscn" id="1_f8muu"]
 [ext_resource type="Script" uid="uid://43a05m5gdr0k" path="res://Prototype3.2/Scripts/game.gd" id="1_pnvsx"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://vjyfcm6rcicq" path="res://Prototype3.2/Scenes/timer_label.gd" id="7_ph6mm"]
 [ext_resource type="AudioStream" uid="uid://dnh8gxweokfy0" path="res://Prototype3.2/Assets/ambience.mp3" id="9_av75u"]
 [ext_resource type="AudioStream" uid="uid://bbs7o0q1womht" path="res://Prototype3.2/Assets/lose_sfx.mp3" id="10_av75u"]
+[ext_resource type="Texture2D" uid="uid://fbvc0ed4vjrg" path="res://Prototype3.2/Assets/background.png" id="11_jnlg2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_08rmc"]
 shader = ExtResource("5_ty1hf")
@@ -257,3 +258,9 @@ max_distance = 1e+16
 stream = ExtResource("10_av75u")
 volume_db = -0.51
 max_distance = 94540.0
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -4096
+position = Vector2(629.25, 1242.0002)
+scale = Vector2(179.72223, 93.76889)
+texture = ExtResource("11_jnlg2")
