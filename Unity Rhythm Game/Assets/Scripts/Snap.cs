@@ -9,37 +9,57 @@ public class Snap : MonoBehaviour
 
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private float timeBetweenFrames;
-
     [SerializeField] private Sprite beforeSprite;
     [SerializeField] private Sprite afterSprite;
+    BubbleScript bs;
+    ScoreBoard sm;
 
+    void Start()
+    {
+        BubbleScript bs = GameObject.FindGameObjectWithTag("Bubble").GetComponent<BubbleScript>();
+        ScoreBoard sm = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBoard>();
+    }
 
     public void OnLeft()
     {
-        // GERNEALIZE THIS CODE INTO A SNAP() FUNCTION
-        // snap();
-        Debug.Log("Left func");
-        //play animation
-        StartCoroutine(DoAnimation(timeBetweenFrames));
-        //handle bubble
-        BubbleScript bs = GameObject.FindGameObjectWithTag("Bubble").GetComponent<BubbleScript>();
-
-        HandleScore(bs.NoteType());
+        snap();
     }
 
     public void OnRight()
     {
-        Debug.Log("Left func");
+        snap();
+    }
+
+    private void snap()
+    {
         //play animation
         StartCoroutine(DoAnimation(timeBetweenFrames));
-        //handle bubble
 
-    }
-
-    void HandleScore(string BELH)
-    {
         
+        //handle score
+        HandleScore(bs.NoteType());
     }
+
+
+    void HandleScore(string quality)
+    {
+        ///*
+        if (quality == "miss")
+        {
+            sm.UpdateScore(0);
+        } else if (quality == "bad")
+        {
+            sm.UpdateScore(50);
+        } else if (quality == "good")
+        {
+            sm.UpdateScore(100);
+        } else if (quality == "perfect")
+        {
+            sm.UpdateScore(200);
+        }
+        //*/
+    }
+    
     
     IEnumerator DoAnimation(float waitTime)
     {
