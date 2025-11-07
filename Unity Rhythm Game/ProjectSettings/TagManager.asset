@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bubble
   - Score
+  - BubbleManager
   layers:
   - Default
   - TransparentFX

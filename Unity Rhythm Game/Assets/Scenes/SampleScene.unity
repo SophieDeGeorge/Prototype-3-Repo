@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112452179410339722, guid: f847e11d2c463bf47bdf7689ee45fa0c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f847e11d2c463bf47bdf7689ee45fa0c, type: 3}
@@ -510,7 +510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112452179410339722, guid: f847e11d2c463bf47bdf7689ee45fa0c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f847e11d2c463bf47bdf7689ee45fa0c, type: 3}
@@ -571,7 +571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112452179410339722, guid: f847e11d2c463bf47bdf7689ee45fa0c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f847e11d2c463bf47bdf7689ee45fa0c, type: 3}
@@ -689,7 +689,7 @@ GameObject:
   - component: {fileID: 1159421114}
   m_Layer: 0
   m_Name: Bubbles
-  m_TagString: Untagged
+  m_TagString: BubbleManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -712,6 +712,7 @@ MonoBehaviour:
   bubble4: {fileID: 231255749}
   bubble5: {fileID: 656614036}
   bubble6: {fileID: 330751354}
+  timeBetweenBubbles: 3
 --- !u!4 &1159421115
 Transform:
   m_ObjectHideFlags: 0
@@ -868,7 +869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112452179410339722, guid: f847e11d2c463bf47bdf7689ee45fa0c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f847e11d2c463bf47bdf7689ee45fa0c, type: 3}
@@ -929,7 +930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112452179410339722, guid: f847e11d2c463bf47bdf7689ee45fa0c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f847e11d2c463bf47bdf7689ee45fa0c, type: 3}
@@ -1035,6 +1036,7 @@ MonoBehaviour:
   timeBetweenFrames: 0.2
   beforeSprite: {fileID: 21300000, guid: 7f3aac415f17a064e861b949a56ff539, type: 3}
   afterSprite: {fileID: 21300000, guid: a712a45488507674d9be2bf056c8412f, type: 3}
+  bs1: {fileID: 0}
 --- !u!114 &1519689035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1142,7 +1144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112452179410339722, guid: f847e11d2c463bf47bdf7689ee45fa0c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f847e11d2c463bf47bdf7689ee45fa0c, type: 3}
@@ -1492,6 +1494,7 @@ MonoBehaviour:
   timeBetweenFrames: 0.2
   beforeSprite: {fileID: 21300000, guid: 7f3aac415f17a064e861b949a56ff539, type: 3}
   afterSprite: {fileID: 21300000, guid: a712a45488507674d9be2bf056c8412f, type: 3}
+  bs1: {fileID: 0}
 --- !u!114 &1920844495
 MonoBehaviour:
   m_ObjectHideFlags: 0

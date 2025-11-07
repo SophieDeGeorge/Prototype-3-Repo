@@ -13,11 +13,17 @@ public class Snap : MonoBehaviour
     [SerializeField] private Sprite afterSprite;
     BubbleScript bs;
     ScoreBoard sm;
+    public BubbleScript bs1;
 
     void Start()
     {
-        BubbleScript bs = GameObject.FindGameObjectWithTag("Bubble").GetComponent<BubbleScript>();
+        //BubbleScript bs = GameObject.FindGameObjectWithTag("Bubble").GetComponent<BubbleScript>();
+        
         ScoreBoard sm = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBoard>();
+        BubblesManager bm = GameObject.FindGameObjectWithTag("BubbleManager").GetComponent<BubblesManager>();
+        //BubbleScript bs = bm.FindObject("Bubble 1");
+        bs1 = GameObject.Find("/Bubbles/Bubble 1/bubbleInner").GetComponent<BubbleScript>();
+        bm.GameStart();
     }
 
     public void OnLeft()
@@ -37,7 +43,7 @@ public class Snap : MonoBehaviour
 
         
         //handle score
-        HandleScore(bs.NoteType());
+        HandleScore(bs1.NoteType());
     }
 
 

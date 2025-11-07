@@ -14,17 +14,6 @@ public class BubbleScript : MonoBehaviour
     [SerializeField] private float perfectRange;
 
 
-    void Start()
-    {
-        //bubble_cldr = GetComponent<CircleCollider2D>(); 
-        /*
-        bad_cldr = badZone.GetComponent<CircleCollider2D>();
-        good_cldr = goodZone.GetComponent<CircleCollider2D>();
-        perfect_cldr = perfectZone.GetComponent<CircleCollider2D>();
-        outline_cldr = outline.GetComponent<CircleCollider2D>();
-        */
-    }
-
     public string NoteType()
     {
             if (tf.localScale.x > missRange)
