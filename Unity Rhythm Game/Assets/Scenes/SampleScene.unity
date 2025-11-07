@@ -796,6 +796,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6072075566305979696, guid: bf88ea5c76c3ea84f967b6b2e550a408, type: 3}
+      propertyPath: m_TagString
+      value: Bubble
+      objectReference: {fileID: 0}
     - target: {fileID: 6072075566305979703, guid: bf88ea5c76c3ea84f967b6b2e550a408, type: 3}
       propertyPath: badZone
       value: 

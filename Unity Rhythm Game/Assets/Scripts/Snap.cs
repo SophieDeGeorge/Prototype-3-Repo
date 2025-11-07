@@ -16,11 +16,15 @@ public class Snap : MonoBehaviour
 
     public void OnLeft()
     {
+        // GERNEALIZE THIS CODE INTO A SNAP() FUNCTION
+        // snap();
         Debug.Log("Left func");
         //play animation
         StartCoroutine(DoAnimation(timeBetweenFrames));
         //handle bubble
+        BubbleScript bs = GameObject.FindGameObjectWithTag("Bubble").GetComponent<BubbleScript>();
 
+        HandleScore(bs.NoteType());
     }
 
     public void OnRight()
@@ -30,6 +34,11 @@ public class Snap : MonoBehaviour
         StartCoroutine(DoAnimation(timeBetweenFrames));
         //handle bubble
 
+    }
+
+    void HandleScore(string BELH)
+    {
+        
     }
     
     IEnumerator DoAnimation(float waitTime)

@@ -18,6 +18,10 @@ public class BubbleScript : MonoBehaviour
     public Transform tf;
     private Vector3 incSpeed = new Vector3(0.1f, 0.1f, 0f);
     private string noteZone;
+    [SerializeField] private float badRange;
+    [SerializeField] private float goodRange;
+    [SerializeField] private float perfectRange;
+    [SerializeField] private float missRange;
 
 
     void Start()
@@ -30,27 +34,25 @@ public class BubbleScript : MonoBehaviour
         noteZone = "miss";
     }
 
-/*
-    private void OnTriggerEnter(CircleCollider2D bubble_cldr) 
+    public string NoteType()
     {
-        if ()
-        {                                                      // if collided with bad_cldr
-            noteZone = "bad";
-        }
-        if ()
-        {                                                       //good_cldr
-            noteZone = "good";
-        }
-        if ()
-        {                                                       //perfect_cldr
-            noteZone = "perfect";
-        }
-        if ()
-        {                                                       //outline cldr
-            noteZone = "miss";
-        }
+            if (tf.localScale.x > missRange)
+            {
+                return "miss";
+            } else if (tf.localScale.x > perfectRange)
+            {
+                return "perfect";
+            } else if (tf.localScale.x > goodRange)
+            {
+                return "good";
+            } else if (tf.localScale.x > badRange)
+            {
+                return "bad";
+            } else
+            {
+                return "miss";
+            }
     }
-    */
 
     // Update is called once per frame
     void Update()
@@ -58,7 +60,6 @@ public class BubbleScript : MonoBehaviour
         if (tf.localScale.x < 0.5)
         {
             tf.localScale += incSpeed * Time.deltaTime;
-            //bubble_cldr.radius = bubble_cldr.radius * (incSpeedRadius * Time.deltaTime);
         } else
         {
             Destroy(gameObject);
