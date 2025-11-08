@@ -7,13 +7,18 @@ public class BubbleScript : MonoBehaviour
 {
     [SerializeField] private CircleCollider2D bubble_cldr;
     public Transform tf;
+    [SerializeField] private GameObject parentBubble;
     private Vector3 incSpeed = new Vector3(0.1f, 0.1f, 0f);
     [SerializeField] private float missRange;
     [SerializeField] private float badRange;
     [SerializeField] private float goodRange;
     [SerializeField] private float perfectRange;
+    private BubblesManager bm;
 
-
+    void Start()
+    {
+        bm = GameObject.FindGameObjectWithTag("BubbleManager").GetComponent<BubblesManager>();
+    }
     public string NoteType()
     {
             if (tf.localScale.x > missRange)
@@ -42,7 +47,8 @@ public class BubbleScript : MonoBehaviour
             tf.localScale += incSpeed * Time.deltaTime;
         } else
         {
-            Destroy(gameObject);
+            parentBubble.SetActive(false);
+            bm.ResetBubble(parentBubble, tf);
         }
     }
 }

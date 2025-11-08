@@ -12,59 +12,41 @@ public class Snap : MonoBehaviour
     [SerializeField] private Sprite beforeSprite;
     [SerializeField] private Sprite afterSprite;
     BubbleScript bs;
-    ScoreBoard sm;
+    ScoreBoard scoreboard;
     public BubbleScript bs1;
+    public BubblesManager bm;
 
     void Start()
     {
         //BubbleScript bs = GameObject.FindGameObjectWithTag("Bubble").GetComponent<BubbleScript>();
         
-        ScoreBoard sm = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBoard>();
-        BubblesManager bm = GameObject.FindGameObjectWithTag("BubbleManager").GetComponent<BubblesManager>();
+        ScoreBoard scoreboard = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBoard>();
+        bm = GameObject.FindGameObjectWithTag("BubbleManager").GetComponent<BubblesManager>();
         //BubbleScript bs = bm.FindObject("Bubble 1");
-        bs1 = GameObject.Find("/Bubbles/Bubble 1/bubbleInner").GetComponent<BubbleScript>();
+        //bs1 = GameObject.Find("/Bubbles/Bubble 1/bubbleInner").GetComponent<BubbleScript>();
+        Debug.Log("Calling gamestart");
         bm.GameStart();
     }
 
     public void OnLeft()
     {
-        snap();
+        snap("left");
     }
 
     public void OnRight()
     {
-        snap();
+        snap("right");
     }
 
-    private void snap()
+    private void snap(string side)
     {
         //play animation
         StartCoroutine(DoAnimation(timeBetweenFrames));
+        Debug.Log("Snapped " + side);
 
-        
         //handle score
-        HandleScore(bs1.NoteType());
-    }
-
-
-    void HandleScore(string quality)
-    {
-        ///*
-        if (quality == "miss")
-        {
-            sm.UpdateScore(0);
-        } else if (quality == "bad")
-        {
-            sm.UpdateScore(50);
-        } else if (quality == "good")
-        {
-            sm.UpdateScore(100);
-        } else if (quality == "perfect")
-        {
-            sm.UpdateScore(200);
-        }
-        //*/
-    }
+        scoreboard.HandleScore(bm.PopBubble(side)); //swap out bs1.NoteType with a new function inside of the bubbles manager
+    }                                                 // let the bubble manager do the work since it has the queue
     
     
     IEnumerator DoAnimation(float waitTime)
