@@ -20,7 +20,7 @@ public class Snap : MonoBehaviour
     {
         //BubbleScript bs = GameObject.FindGameObjectWithTag("Bubble").GetComponent<BubbleScript>();
         
-        scoreboard = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBoard>();
+        ScoreBoard scoreboard = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBoard>();
         bm = GameObject.FindGameObjectWithTag("BubbleManager").GetComponent<BubblesManager>();
         //BubbleScript bs = bm.FindObject("Bubble 1");
         //bs1 = GameObject.Find("/Bubbles/Bubble 1/bubbleInner").GetComponent<BubbleScript>();

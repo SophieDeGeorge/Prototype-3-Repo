@@ -45,30 +45,24 @@ public class BubblesManager : MonoBehaviour
         Debug.Log("End of GameStart()");
     }
 
-public string PopBubble(string side)
-{
-    if (side == "left")
+    public string PopBubble(string side) //return quality and kill bubble
     {
-        curBubble = bubbleQueueLeft.Dequeue();
-        btf = curBubble.GetComponent<Transform>();
-        btf = btf.transform.Find("bubbleInner").GetComponent<Transform>();
-                
-        string result = NoteType(btf);        
-        ResetBubble(curBubble, btf);
-        return result;
+        if (side == "left")
+        {
+            curBubble = bubbleQueueLeft.Dequeue();
+            btf = curBubble.GetComponent<Transform>();
+            btf = btf.transform.Find("bubbleInner").GetComponent<Transform>();
+            ResetBubble(curBubble, btf);
+        }
+        else if (side == "right")
+        {
+            curBubble = bubbleQueueRight.Dequeue();
+            btf = curBubble.GetComponent<Transform>();
+            btf = btf.transform.Find("bubbleInner").GetComponent<Transform>(); //gets bubbleInner transform
+            ResetBubble(curBubble, btf);
+        }
+        return NoteType(btf);
     }
-    else if (side == "right")
-    {
-        curBubble = bubbleQueueRight.Dequeue();
-        btf = curBubble.GetComponent<Transform>();
-        btf = btf.transform.Find("bubbleInner").GetComponent<Transform>();
-                
-        string result = NoteType(btf);        
-        ResetBubble(curBubble, btf);
-        return result;
-    }
-    return "miss";
-}
     
     public void ResetBubble(GameObject bubble, Transform innerTransform)
     {
@@ -167,7 +161,7 @@ public string PopBubble(string side)
                 }
             }
 
-            else {
+            {
                 Debug.Log("Error: BubbleEnabler only takes int values 1-6, was passed " + val);
             }
             Debug.Log("End of BubbleEnabler()");

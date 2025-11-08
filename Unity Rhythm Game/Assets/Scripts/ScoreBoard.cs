@@ -1,42 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class ScoreBoard : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI scoreText;
-    private int currentScore = 0;
-
+    // Start is called before the first frame update
     void Start()
     {
-        currentScore = 0;
-        UpdateScoreDisplay();
+        
     }
 
-    public void UpdateScore(int scoreToAdd)
+    public void UpdateScore(int score)
     {
-        currentScore += scoreToAdd;
-        UpdateScoreDisplay();
-        Debug.Log("Score updated: " + currentScore);
-    }
-
-    private void UpdateScoreDisplay()
-    {
-        if (scoreText != null)
-        {
-            scoreText.text = currentScore.ToString();
-        }
-        else
-        {
-            Debug.LogWarning("Score Text is not assigned in Inspector!");
-        }
+        //add ui updates in here
+        
     }
 
     public void HandleScore(string quality)
     {
-        Debug.Log("HandleScore called with: " + quality);
-        
         if (quality == "miss")
         {
             UpdateScore(0);
@@ -53,5 +34,11 @@ public class ScoreBoard : MonoBehaviour
         {
             UpdateScore(200);
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
