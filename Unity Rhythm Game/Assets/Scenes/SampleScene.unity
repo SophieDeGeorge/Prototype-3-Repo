@@ -724,7 +724,7 @@ MonoBehaviour:
   bubble4: {fileID: 231255749}
   bubble5: {fileID: 656614036}
   bubble6: {fileID: 330751354}
-  timeBetweenBubbles: 2
+  timeBetweenBubbles: 3
   badRange: 0
   goodRange: 0
   perfectRange: 0
@@ -1060,8 +1060,7 @@ MonoBehaviour:
   timeBetweenFrames: 0.2
   beforeSprite: {fileID: 21300000, guid: 7f3aac415f17a064e861b949a56ff539, type: 3}
   afterSprite: {fileID: 21300000, guid: a712a45488507674d9be2bf056c8412f, type: 3}
-  bs1: {fileID: 0}
-  bm: {fileID: 0}
+  playerInput: {fileID: 1519689035}
 --- !u!114 &1519689035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,6 +1420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39172b24ab9a2bd44ab2c68b2fe263dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 1844514332}
 --- !u!1 &1920844490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,8 +1523,7 @@ MonoBehaviour:
   timeBetweenFrames: 0.2
   beforeSprite: {fileID: 21300000, guid: 7f3aac415f17a064e861b949a56ff539, type: 3}
   afterSprite: {fileID: 21300000, guid: a712a45488507674d9be2bf056c8412f, type: 3}
-  bs1: {fileID: 0}
-  bm: {fileID: 0}
+  playerInput: {fileID: 1920844495}
 --- !u!114 &1920844495
 MonoBehaviour:
   m_ObjectHideFlags: 0

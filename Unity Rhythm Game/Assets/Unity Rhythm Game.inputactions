@@ -11,7 +11,7 @@
                     "id": "ced968e6-f0e1-4604-8bc7-0781ddbd39f0",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "initialStateCheck": false
                 },
                 {
@@ -20,7 +20,7 @@
                     "id": "f130f751-7093-45f8-879f-40f022538719",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "initialStateCheck": false
                 }
             ],
@@ -29,7 +29,7 @@
                     "name": "",
                     "id": "7bdd1b65-adbb-4cd0-a338-fd51bd96d904",
                     "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Left",
@@ -40,7 +40,7 @@
                     "name": "",
                     "id": "9241e9ba-a9e6-416a-b59e-e1877c04e35d",
                     "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Right",

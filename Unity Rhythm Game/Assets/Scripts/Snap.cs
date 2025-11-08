@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Snap : MonoBehaviour
 {
@@ -13,48 +14,56 @@ public class Snap : MonoBehaviour
     [SerializeField] private Sprite afterSprite;
     BubbleScript bs;
     ScoreBoard scoreboard;
-    public BubbleScript bs1;
-    public BubblesManager bm;
+    //public BubbleScript bs1;
+    private BubblesManager bm;
+    public PlayerInput playerInput;
+    //private bool left = playerInput.actions["Left"];
+
 
     void Start()
     {
-        //BubbleScript bs = GameObject.FindGameObjectWithTag("Bubble").GetComponent<BubbleScript>();
-        
-        ScoreBoard scoreboard = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBoard>();
+        scoreboard = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBoard>();
         bm = GameObject.FindGameObjectWithTag("BubbleManager").GetComponent<BubblesManager>();
-        //BubbleScript bs = bm.FindObject("Bubble 1");
-        //bs1 = GameObject.Find("/Bubbles/Bubble 1/bubbleInner").GetComponent<BubbleScript>();
         Debug.Log("Calling gamestart");
         bm.GameStart();
     }
 
     public void OnLeft()
     {
-        snap("left");
+        var left = playerInput.actions["Left"];
+        if (!left.WasPerformedThisFrame() && left.IsPressed())
+        {
+        Debug.Log("OnLeft");
+        DoSnap("left");
+        }
+
     }
 
     public void OnRight()
     {
-        snap("right");
+        var right = playerInput.actions["Right"];
+        if (!right.WasPerformedThisFrame() && right.IsPressed())
+        {
+        Debug.Log("OnRight");
+        DoSnap("right");
+        }
     }
 
-    private void snap(string side)
+    private void DoSnap(string side)
     {
         //play animation
         StartCoroutine(DoAnimation(timeBetweenFrames));
-        Debug.Log("Snapped " + side);
+        //Debug.Log("Snapped " + side);
 
         //handle score
-        scoreboard.HandleScore(bm.PopBubble(side)); //swap out bs1.NoteType with a new function inside of the bubbles manager
-    }                                                 // let the bubble manager do the work since it has the queue
+        scoreboard.HandleScore(bm.PopBubble(side));
+    }                                             
     
     
     IEnumerator DoAnimation(float waitTime)
     {
-        Debug.Log("inside corountine");
         m_SpriteRenderer.sprite = afterSprite;
         yield return new WaitForSeconds(waitTime);
         m_SpriteRenderer.sprite = beforeSprite;
-        Debug.Log("after corountine");
     }
 }

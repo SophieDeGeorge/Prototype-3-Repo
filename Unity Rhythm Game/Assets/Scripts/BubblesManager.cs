@@ -14,7 +14,7 @@ public class BubblesManager : MonoBehaviour
     private Queue<GameObject> bubbleQueueLeft = new Queue<GameObject>();
     private Queue<GameObject> bubbleQueueRight = new Queue<GameObject>();
     private Transform btf;
-    
+
     [SerializeField] private float badRange;
     [SerializeField] private float goodRange;
     [SerializeField] private float perfectRange;
@@ -40,139 +40,164 @@ public class BubblesManager : MonoBehaviour
         bubble4.SetActive(false);
         bubble5.SetActive(false);
         bubble6.SetActive(false);
-        Debug.Log("Middle of GameStart()");
         StartCoroutine(BubbleEnabler(Random.Range(1, 7))); // 7 is excluded
-        Debug.Log("End of GameStart()");
     }
 
-    public string PopBubble(string side) //return quality and kill bubble
+    public string PopBubble(string side)
     {
         if (side == "left")
         {
-            curBubble = bubbleQueueLeft.Dequeue();
-            btf = curBubble.GetComponent<Transform>();
-            btf = btf.transform.Find("bubbleInner").GetComponent<Transform>();
-            ResetBubble(curBubble, btf);
+            if (bubbleQueueLeft.Count != 0)
+            {
+                curBubble = bubbleQueueLeft.Dequeue();
+                btf = curBubble.GetComponent<Transform>();
+                btf = btf.transform.Find("bubbleInner").GetComponent<Transform>();
+
+                string result = NoteType(btf);
+                ResetBubble(curBubble, btf);
+                return result;
+            }
+            
         }
         else if (side == "right")
         {
-            curBubble = bubbleQueueRight.Dequeue();
-            btf = curBubble.GetComponent<Transform>();
-            btf = btf.transform.Find("bubbleInner").GetComponent<Transform>(); //gets bubbleInner transform
-            ResetBubble(curBubble, btf);
+            if (bubbleQueueRight.Count != 0)
+            {
+                curBubble = bubbleQueueRight.Dequeue();
+                btf = curBubble.GetComponent<Transform>();
+                btf = btf.transform.Find("bubbleInner").GetComponent<Transform>();
+
+                string result = NoteType(btf);
+                ResetBubble(curBubble, btf);
+                return result;
+            }
         }
-        return NoteType(btf);
+        return "miss";
     }
-    
+
     public void ResetBubble(GameObject bubble, Transform innerTransform)
     {
         bubble.SetActive(false);
         innerTransform.localScale = startingScale;
 
     }
-    
+
     public string NoteType(Transform bubbleTransform)
     {
-            if (bubbleTransform.localScale.x > missRange)
-            {
-                return "miss";
-            } else if (bubbleTransform.localScale.x > perfectRange)
-            {
-                return "perfect";
-            } else if (bubbleTransform.localScale.x > goodRange)
-            {
-                return "good";
-            } else if (bubbleTransform.localScale.x > badRange)
-            {
-                return "bad";
-            } else
-            {
-                return "miss";
-            }
+        if (bubbleTransform.localScale.x > missRange)
+        {
+            return "miss";
+        }
+        else if (bubbleTransform.localScale.x > perfectRange)
+        {
+            return "perfect";
+        }
+        else if (bubbleTransform.localScale.x > goodRange)
+        {
+            return "good";
+        }
+        else if (bubbleTransform.localScale.x > badRange)
+        {
+            return "bad";
+        }
+        else
+        {
+            return "miss";
+        }
     }
-    
+
     IEnumerator BubbleEnabler(int val)
     { //put all of this in a loop with the waitforseconds at the bottom of it
-        Debug.Log("bubbleEnabler value = " + val);
+        //Debug.Log("bubbleEnabler value = " + val);
         for (int i = 0; i < 100; i++)
         {
-            Debug.Log("Got to loop " + i);
+            //Debug.Log("Got to loop " + i);
 
             if (val == 1)
             {
                 if (bubble1.activeSelf == true)
                 {
-                    BubbleEnabler(Random.Range(1, 7));
+                    StartCoroutine(BubbleEnabler(Random.Range(1, 7)));                                                  //DO START COROUTINE
+                    yield return new WaitForSeconds(0.1f);
                 }
                 else
                 {
                     bubble1.SetActive(true);
                     bubbleQueueLeft.Enqueue(bubble1);
                 }
-            } else if (val == 2)
+            }
+            else if (val == 2)
             {
                 if (bubble2.activeSelf == true)
                 {
-                    BubbleEnabler(Random.Range(1, 7));
-                } else
+                    StartCoroutine(BubbleEnabler(Random.Range(1, 7)));
+                    yield return new WaitForSeconds(0.1f);
+                }
+                else
                 {
                     bubble2.SetActive(true);
                     bubbleQueueLeft.Enqueue(bubble2);
                 }
-            } else if (val == 3)
+            }
+            else if (val == 3)
             {
                 if (bubble3.activeSelf == true)
                 {
-                    BubbleEnabler(Random.Range(1, 7));
-                } else
+                    StartCoroutine(BubbleEnabler(Random.Range(1, 7)));
+                    yield return new WaitForSeconds(0.1f);
+                }
+                else
                 {
                     bubble3.SetActive(true);
                     bubbleQueueLeft.Enqueue(bubble3);
                 }
-            } else if (val == 4)
+            }
+            else if (val == 4)
             {
                 if (bubble4.activeSelf == true)
                 {
-                    BubbleEnabler(Random.Range(1, 7));
-                } else
+                    StartCoroutine(BubbleEnabler(Random.Range(1, 7)));
+                    yield return new WaitForSeconds(0.1f);
+                }
+                else
                 {
                     bubble4.SetActive(true);
                     bubbleQueueRight.Enqueue(bubble4);
                 }
-            } else if (val == 5)
+            }
+            else if (val == 5)
             {
                 if (bubble5.activeSelf == true)
                 {
-                    BubbleEnabler(Random.Range(1, 7));
-                } else
+                    StartCoroutine(BubbleEnabler(Random.Range(1, 7)));
+                    yield return new WaitForSeconds(0.1f);
+                }
+                else
                 {
                     bubble5.SetActive(true);
                     bubbleQueueRight.Enqueue(bubble5);
                 }
-            } else if (val == 6)
+            }
+            else if (val == 6)
             {
                 if (bubble6.activeSelf == true)
                 {
-                    BubbleEnabler(Random.Range(1, 7));
-                } else
+                    StartCoroutine(BubbleEnabler(Random.Range(1, 7)));
+                    yield return new WaitForSeconds(0.1f);
+                }
+                else
                 {
                     bubble6.SetActive(true);
                     bubbleQueueRight.Enqueue(bubble6);
                 }
             }
 
-            {
-                Debug.Log("Error: BubbleEnabler only takes int values 1-6, was passed " + val);
+            else
+            { //I thought you forgot the else here I maybe wrong.
+                Debug.LogWarning("Error: BubbleEnabler only takes int values 1-6, was passed " + val);
             }
-            Debug.Log("End of BubbleEnabler()");
             yield return new WaitForSeconds(timeBetweenBubbles);
         }
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
