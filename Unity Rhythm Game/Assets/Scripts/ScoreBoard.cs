@@ -12,8 +12,8 @@ public class ScoreBoard : MonoBehaviour
 
     public void UpdateScore(int score)
     {
-        //somethin
-        Debug.Log("YEAHHH");
+        //add ui updates in here
+        
     }
 
     public void HandleScore(string quality)
