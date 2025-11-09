@@ -724,7 +724,7 @@ MonoBehaviour:
   bubble4: {fileID: 231255749}
   bubble5: {fileID: 656614036}
   bubble6: {fileID: 330751354}
-  timeBetweenBubbles: 3
+  timeBetweenBubbles: 5
   badRange: 0
   goodRange: 0
   perfectRange: 0

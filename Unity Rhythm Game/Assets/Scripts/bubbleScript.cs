@@ -8,7 +8,8 @@ public class BubbleScript : MonoBehaviour
     [SerializeField] private CircleCollider2D bubble_cldr;
     public Transform tf;
     [SerializeField] private GameObject parentBubble;
-    private Vector3 incSpeed = new Vector3(0.1f, 0.1f, 0f);
+    [SerializeField] private float incSpeed;
+    private Vector3 incSpeedVector = new Vector3(0.1f, 0.1f, 0f);
     [SerializeField] private float missRange;
     [SerializeField] private float badRange;
     [SerializeField] private float goodRange;
@@ -18,6 +19,7 @@ public class BubbleScript : MonoBehaviour
     void Start()
     {
         bm = GameObject.FindGameObjectWithTag("BubbleManager").GetComponent<BubblesManager>();
+        incSpeed = 2.0f;
     }
     public string NoteType()
     {
@@ -44,7 +46,7 @@ public class BubbleScript : MonoBehaviour
     {
         if (tf.localScale.x < 0.5)
         {
-            tf.localScale += incSpeed * Time.deltaTime;
+            tf.localScale +=  incSpeed * incSpeedVector * Time.deltaTime;
         } else
         {
             parentBubble.SetActive(false);

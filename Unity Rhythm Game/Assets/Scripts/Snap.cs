@@ -14,18 +14,14 @@ public class Snap : MonoBehaviour
     [SerializeField] private Sprite afterSprite;
     BubbleScript bs;
     ScoreBoard scoreboard;
-    //public BubbleScript bs1;
     private BubblesManager bm;
     public PlayerInput playerInput;
-    //private bool left = playerInput.actions["Left"];
 
 
     void Start()
     {
         scoreboard = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBoard>();
         bm = GameObject.FindGameObjectWithTag("BubbleManager").GetComponent<BubblesManager>();
-        Debug.Log("Calling gamestart");
-        bm.GameStart();
     }
 
     public void OnLeft()
