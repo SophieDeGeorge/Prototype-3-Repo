@@ -718,13 +718,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92582e4b6c34ab4cbbdf7db27af0c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubble1: {fileID: 425962328}
-  bubble2: {fileID: 209442965}
-  bubble3: {fileID: 1309179488}
-  bubble4: {fileID: 231255749}
-  bubble5: {fileID: 656614036}
-  bubble6: {fileID: 330751354}
-  timeBetweenBubbles: 5
+  bubbles:
+  - {fileID: 425962328}
+  - {fileID: 209442965}
+  - {fileID: 1309179488}
+  - {fileID: 231255749}
+  - {fileID: 656614036}
+  - {fileID: 330751354}
+  timeBetweenBubbles: 1
   badRange: 0
   goodRange: 0
   perfectRange: 0
