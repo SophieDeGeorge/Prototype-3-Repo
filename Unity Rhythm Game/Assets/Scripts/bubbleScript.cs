@@ -15,11 +15,13 @@ public class BubbleScript : MonoBehaviour
     [SerializeField] private float goodRange;
     [SerializeField] private float perfectRange;
     private BubblesManager bm;
+    private AudioManager am;
 
     void Start()
     {
         bm = GameObject.FindGameObjectWithTag("BubbleManager").GetComponent<BubblesManager>();
         incSpeed = 2.0f;
+        am = GameObject.FindGameObjectWithTag("BubbleManager").GetComponent<AudioManager>();
     }
     public string NoteType()
     {
@@ -49,6 +51,7 @@ public class BubbleScript : MonoBehaviour
             tf.localScale +=  incSpeed * incSpeedVector * Time.deltaTime;
         } else
         {
+            am.PopSFX();
             parentBubble.SetActive(false);
             bm.ResetBubble(parentBubble, tf);
         }

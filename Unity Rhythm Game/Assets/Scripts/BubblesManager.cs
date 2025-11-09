@@ -17,12 +17,14 @@ public class BubblesManager : MonoBehaviour
     [SerializeField] private float missRange;
     private GameObject curBubble;
     private Vector3 startingScale = new Vector3(0.1f, 0.1f, 0.3f);
+    private AudioManager am;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        am = gameObject.GetComponent<AudioManager>();
         badRange = 0.2f;
         goodRange = 0.4f;
         perfectRange = 0.45f;
@@ -46,6 +48,9 @@ public class BubblesManager : MonoBehaviour
         {
             if (bubbleQueueLeft.Count != 0)
             {
+                Debug.Log("Before PopSFX");
+                am.PopSFX();
+                am.SnapSFX();
                 curBubble = bubbleQueueLeft.Dequeue();
                 btf = curBubble.GetComponent<Transform>();
                 btf = btf.transform.Find("bubbleInner").GetComponent<Transform>();
@@ -60,6 +65,9 @@ public class BubblesManager : MonoBehaviour
         {
             if (bubbleQueueRight.Count != 0)
             {
+                Debug.Log("Before PopSFX");
+                am.PopSFX();
+                am.SnapSFX();
                 curBubble = bubbleQueueRight.Dequeue();
                 btf = curBubble.GetComponent<Transform>();
                 btf = btf.transform.Find("bubbleInner").GetComponent<Transform>();

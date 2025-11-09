@@ -5,6 +5,7 @@ using TMPro;
 
 public class ScoreBoard : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI noteTypeText;
     [SerializeField] private TextMeshProUGUI scoreText;
     private int currentScore = 0;
 
@@ -36,7 +37,8 @@ public class ScoreBoard : MonoBehaviour
     public void HandleScore(string quality)
     {
         //Debug.Log("HandleScore called with: " + quality);
-        
+        StartCoroutine(DisplayNoteType(quality));
+
         if (quality == "miss")
         {
             UpdateScore(0);
@@ -53,5 +55,11 @@ public class ScoreBoard : MonoBehaviour
         {
             UpdateScore(200);
         }
+    }
+
+    private IEnumerator DisplayNoteType(string type)
+    {
+        noteTypeText.text = type + "!";
+        yield return new WaitForSeconds(0.5f);
     }
 }

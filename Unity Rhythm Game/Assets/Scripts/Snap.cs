@@ -16,12 +16,14 @@ public class Snap : MonoBehaviour
     ScoreBoard scoreboard;
     private BubblesManager bm;
     public PlayerInput playerInput;
+    private AudioManager am;
 
 
     void Start()
     {
         scoreboard = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBoard>();
         bm = GameObject.FindGameObjectWithTag("BubbleManager").GetComponent<BubblesManager>();
+        //am = gameObject.GetComponent<AudioManager>();
     }
 
     public void OnLeft()
@@ -49,7 +51,9 @@ public class Snap : MonoBehaviour
     {
         //play animation
         StartCoroutine(DoAnimation(timeBetweenFrames));
-        //Debug.Log("Snapped " + side);
+        Debug.Log("Before SnapSFX");
+        //play SFX
+        //am.SnapSFX();
 
         //handle score
         scoreboard.HandleScore(bm.PopBubble(side));
